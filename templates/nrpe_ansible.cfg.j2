@@ -5,4 +5,10 @@
 
 # Example check
 command[check_mailq]={{ nagios_nrpe_server_plugins_dir }}/check_mailq -c 50 -w 20
-
+{% if ansible_system == 'Linux' %}
+command[check_linux_mem]={{ nagios_nrpe_server_plugins_dir }}/check_mem $ARG1$
+command[check_linux_cpu]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl $ARG1$
+command[check_linux_load]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl $ARG1$
+command[check_linux_disk]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl $ARG1$
+command[check_linux_io]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl $ARG1$
+{% endif %}
