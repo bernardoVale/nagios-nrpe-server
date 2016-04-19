@@ -3,12 +3,17 @@
 # DO NOT EDIT LOCALLY
 #################################
 
-# Example check
-command[check_mailq]={{ nagios_nrpe_server_plugins_dir }}/check_mailq -c 50 -w 20
 {% if ansible_system == 'Linux' %}
-command[check_linux_mem]={{ nagios_nrpe_server_plugins_dir }}/check_mem $ARG1$
-command[check_linux_cpu]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl $ARG1$
-command[check_linux_load]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl $ARG1$
-command[check_linux_disk]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl $ARG1$
-command[check_linux_io]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl $ARG1$
+command[check_linux_mem]={{ nagios_nrpe_server_plugins_dir }}/check_mem -u -C $ARG1$
+command[check_linux_cpu]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl -C $ARG1$
+command[check_linux_load]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl -L $ARG1$
+command[check_linux_disk]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl -D $ARG1$
+command[check_linux_io]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl -I $ARG1$
+command[check_linux_procs]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl -P $ARG1$
+command[check_linux_uptime]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl -U $ARG1$
+command[check_linux_network]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl -N $ARG1$
+command[check_linux_paging]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl -W $ARG1$
+command[check_linux_process]={{ nagios_nrpe_server_plugins_dir }}/check_linux_stats.pl -T $ARG1$ -p $ARG2$
+command[check_speedtest]=sudo {{ nagios_nrpe_server_plugins_dir }}/check_speedtest.sh $ARG1$
+command[check_net_traffic]=sudo {{ nagios_nrpe_server_plugins_dir }}/check_net_traffic.sh $ARG1$
 {% endif %}

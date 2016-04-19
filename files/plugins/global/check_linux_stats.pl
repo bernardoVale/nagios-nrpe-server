@@ -29,7 +29,7 @@
 
 use FindBin;
 use lib $FindBin::Bin;
-use lib "/usr/local/nagios/libexec";
+use lib "/usr/lib64/nagios/plugins";
 use utils qw($TIMEOUT %ERRORS &print_revision &support);
 use Getopt::Long;
 use Sys::Statistics::Linux;

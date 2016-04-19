@@ -30,10 +30,6 @@
 # Solaris based packages
 - include: packages-Solaris.yml
   when: "ansible_os_family == 'Solaris'"
-  
-# Install Linux packages for Perl language
-- include: linux-perl.yml
-  when: "ansible_system == 'Linux'"
 
 # Create our config
 - name: Create nrpe.cfg from template
